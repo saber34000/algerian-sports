@@ -9,7 +9,7 @@ class AppColors {
   static const Color cardBackground = Color(0xFF1E222B); // لون البطاقات
   static const Color textPrimary = Color(0xFFF1F5F9);
   static const Color textSecondary = Color(0xFF94A3B8);
-  static const Color liveRed = Color(0xFFFF3B30);      // لون البث الحي
+  static const Color liveRed = Color(0xFFFF3B30); // لون البث الحي
 }
 
 void main() {
@@ -48,11 +48,10 @@ class MainHomeScreen extends StatefulWidget {
 class _MainHomeScreenState extends State<MainHomeScreen> {
   int _currentIndex = 0;
 
-  // ترتيب الأقسام حسب رغبتك: المنتخب -> المشاركات الخارجية -> البطولة والفرق الجماهيرية
-  final List<Widget> _screens = [
-    const NationalTeamScreen(),
-    const ContinentalScreen(),
-    const LocalLeagueScreen(),
+  final List<Widget> _screens = const [
+    NationalTeamScreen(),
+    ContinentalScreen(),
+    LocalLeagueScreen(),
   ];
 
   @override
@@ -61,11 +60,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.backgroundDark,
         elevation: 0,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text('🇩🇿', style: TextStyle(fontSize: 22)),
-            SizedBox(width: 8,
+            SizedBox(width: 8),
             Text(
               'مرصد الرياضة الجزائرية',
               style: TextStyle(
@@ -117,7 +116,6 @@ class NationalTeamScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16.0),
       children: [
-        // بطاقة ترويجية للمنتخب
         Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
@@ -128,22 +126,49 @@ class NationalTeamScreen extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text('وحدة، عزيمة، وطموح', style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
-              SizedBox(height: 12,
-              Text('محاربوه الصحراء في قلب الحدث', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.pureWhite)),
+            children: [
+              Text(
+                'وحدة، عزيمة، وطموح',
+                style: TextStyle(
+                  color: AppColors.textSecondary,
+                  fontSize: 12,
+                ),
+              ),
               SizedBox(height: 12),
-              Text('تابع أخبار المعسكرات، القائمة المستدعاة، وتصفيات المونديال لحظة بلحظة.', style: TextStyle(color: AppColors.textPrimary, fontSize: 13)),
+              Text(
+                'محاربوه الصحراء في قلب الحدث',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.pureWhite,
+                ),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'تابع أخبار المعسكرات، القائمة المستدعاة، وتصفيات المونديال لحظة بلحظة.',
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                ),
+              ),
             ],
           ),
         ),
         const SizedBox(height: 20),
-        const Text('⭐ آخر مستجدات الخضر', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text(
+          '⭐ آخر مستجدات الخضر',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 12),
-        _buildNewsItem('بيتكوفيتش يعلن عن قائمة اللاعبين المعنيين بتربص المنتخب الوطني القادم.', 'منذ ساعة'),
-        _buildNewsItem('محرز وعمورة يقودان أنديتهم لتألق لافت في الملاعب الخارجية.', 'منذ 3 ساعات'),
+        _buildNewsItem(
+          'بيتكوفيتش يعلن عن قائمة اللاعبين المعنيين بتربص المنتخب الوطني القادم.',
+          'منذ ساعة',
+        ),
+        _buildNewsItem(
+          'محرز وعمورة يقودان أنديتهم لتألق لافت في الملاعب الخارجية.',
+          'منذ 3 ساعات',
+        ),
       ],
     );
   }
@@ -164,9 +189,21 @@ class NationalTeamScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
                 const SizedBox(height: 4),
-                Text(time, style: const TextStyle(color: AppColors.textSecondary, fontSize: 12)),
+                Text(
+                  time,
+                  style: const TextStyle(
+                    color: AppColors.textSecondary,
+                    fontSize: 12,
+                  ),
+                ),
               ],
             ),
           ),
@@ -185,18 +222,44 @@ class ContinentalScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16.0),
       children: [
-        const Text('🌍 ممثلو الجزائر قارياً (أبطال إفريقيا والكونفدرالية)', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        const Text(
+          '🌍 ممثلو الجزائر قارياً (أبطال إفريقيا والكونفدرالية)',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 16),
-        _buildMatchCard('رابطة أبطال إفريقيا', 'مولودية الجزائر (MCA)', '1 - 0', 'مازيمبي الكونغولي', 'انتهت'),
+        _buildMatchCard(
+          'رابطة أبطال إفريقيا',
+          'مولودية الجزائر (MCA)',
+          '1 - 0',
+          'مازيمبي الكونغولي',
+          'انتهت',
+        ),
         const SizedBox(height: 12),
-        _buildMatchCard('كأس الكونفدرالية الإفريقية', 'اتحاد الجزائر (USMA)', '2 - 1', 'الأسود التونسي', 'مباشر 85\''),
+        _buildMatchCard(
+          'كأس الكونفدرالية الإفريقية',
+          'اتحاد الجزائر (USMA)',
+          '2 - 1',
+          'الأسود التونسي',
+          'مباشر 85\'',
+        ),
         const SizedBox(height: 12),
-        _buildMatchCard('رابطة أبطال إفريقيا', 'شباب بلوزداد (CRB)', '0 - 0', 'أورلاندو بايرتس', 'قريبا'),
+        _buildMatchCard(
+          'رابطة أبطال إفريقيا',
+          'شباب بلوزداد (CRB)',
+          '0 - 0',
+          'أورلاندو بايرتس',
+          'قريبا',
+        ),
       ],
     );
   }
 
-  Widget _buildMatchCard(String competition, String team1, String score, String team2, String status) {
+  Widget _buildMatchCard(
+      String competition,
+      String team1,
+      String score,
+      String team2,
+      String status) {
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -206,21 +269,61 @@ class ContinentalScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(competition, style: const TextStyle(color: AppColors.accentRed, fontSize: 11, fontWeight: FontWeight.bold)),
+          Text(
+            competition,
+            style: const TextStyle(
+              color: AppColors.accentRed,
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(child: Text(team1, textAlign: TextAlign.right, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13))),
+              Expanded(
+                child: Text(
+                  team1,
+                  textAlign: TextAlign.right,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(score, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.pureWhite)),
+                child: Text(
+                  score,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.pureWhite,
+                  ),
+                ),
               ),
-              Expanded(child: Text(team2, textAlign: TextAlign.left, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13))),
+              Expanded(
+                child: Text(
+                  team2,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
             ],
           ),
-          const SizedBox(height: 12,
-          Text(status, style: TextStyle(color: status.contains('مباشر') ? AppColors.liveRed : AppColors.textSecondary, fontSize: 11)),
+          const SizedBox(height: 12),
+          Text(
+            status,
+            style: TextStyle(
+              color: status.contains('مباشر')
+                  ? AppColors.liveRed
+                  : AppColors.textSecondary,
+              fontSize: 11,
+            ),
+          ),
         ],
       ),
     );
@@ -236,9 +339,11 @@ class LocalLeagueScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16.0),
       children: [
-        const Text('🏟️ نبض المدرجات والبطولة المحترفة', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        const Text(
+          '🏟️ نبض المدرجات والبطولة المحترفة',
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 16),
-        // جدول مصغر للأندية الجماهيرية الكبرى
         Container(
           decoration: BoxDecoration(
             color: AppColors.cardBackground,
@@ -259,7 +364,12 @@ class LocalLeagueScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildRow(String rank, String team, String points, {bool isHeader = false}) {
+  Widget _buildRow(
+    String rank,
+    String team,
+    String points, {
+    bool isHeader = false,
+  }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
@@ -268,9 +378,37 @@ class LocalLeagueScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(width: 40, child: Text(rank, style: TextStyle(fontWeight: isHeader ? FontWeight.bold : FontWeight.normal, color: isHeader ? AppColors.accentRed : AppColors.textPrimary))),
-          Expanded(flex: 3, child: Text(team, style: TextStyle(fontWeight: isHeader ? FontWeight.bold : FontWeight.normal, fontSize: 13))),
-          SizedBox(width: 50, child: Text(points, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color: isHeader ? AppColors.textPrimary : AppColors.primaryGreen))),
+          SizedBox(
+            width: 40,
+            child: Text(
+              rank,
+              style: TextStyle(
+                fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
+                color: isHeader ? AppColors.accentRed : AppColors.textPrimary,
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              team,
+              style: TextStyle(
+                fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
+                fontSize: 13,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 50,
+            child: Text(
+              points,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: isHeader ? AppColors.textPrimary : AppColors.primaryGreen,
+              ),
+            ),
+          ),
         ],
       ),
     );
