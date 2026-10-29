@@ -65,7 +65,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text('🇩🇿', style: TextStyle(fontSize: 22)),
-            SizedBox(width: 😎,
+            SizedBox(width: 8,
             Text(
               'مرصد الرياضة الجزائرية',
               style: TextStyle(
@@ -132,7 +132,7 @@ class NationalTeamScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               Text('وحدة، عزيمة، وطموح', style: TextStyle(color: AppColors.textSecondary, fontSize: 12)),
-              SizedBox(height: 😎,
+              SizedBox(height: 12,
               Text('محاربوه الصحراء في قلب الحدث', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors.pureWhite)),
               SizedBox(height: 12),
               Text('تابع أخبار المعسكرات، القائمة المستدعاة، وتصفيات المونديال لحظة بلحظة.', style: TextStyle(color: AppColors.textPrimary, fontSize: 13)),
@@ -219,7 +219,7 @@ class ContinentalScreen extends StatelessWidget {
               Expanded(child: Text(team2, textAlign: TextAlign.left, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13))),
             ],
           ),
-          const SizedBox(height: 😎,
+          const SizedBox(height: 12,
           Text(status, style: TextStyle(color: status.contains('مباشر') ? AppColors.liveRed : AppColors.textSecondary, fontSize: 11)),
         ],
       ),
