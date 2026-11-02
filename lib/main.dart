@@ -6,10 +6,12 @@ import 'package:intl/intl.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    // إذا كان المشروع جاهزًا مع firebase_options.dart، استخدم هذا:
-    // options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // إذا كان المشروع جاهزًا مع ملف firebase_options.dart، استخدم:
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+
+  await Firebase.initializeApp();
 
   runApp(const AlgerianSportsApp());
 }
@@ -25,10 +27,6 @@ class AlgerianSportsApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.grey[100],
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.green,
-          foregroundColor: Colors.white,
-        ),
       ),
       home: const NewsHomeScreen(),
     );
@@ -49,6 +47,7 @@ class NewsHomeScreen extends StatelessWidget {
             color: Colors.white,
           ),
         ),
+        backgroundColor: Colors.green[800],
         centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -199,6 +198,7 @@ class NewsDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('تفاصيل الخبر'),
+        backgroundColor: Colors.green[800],
       ),
       body: SingleChildScrollView(
         child: Column(
