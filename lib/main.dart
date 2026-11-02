@@ -40,7 +40,7 @@ class NewsHomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        // الاستماع اللحظي للبيانات من مجموعة sports_news التي أنشأناها
+        // الاستماع الفوري للبيانات من جدول sports_news في Firebase
         stream: FirebaseFirestore.instance.collection('sports_news').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
