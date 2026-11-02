@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+
+// إذا كان المشروع يحتوي على firebase_options.dart generated من FlutterFire، استخدم هذا:
+// import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // استخدم هذه النسخة إذا كان لديك ملف firebase_options.dart:
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+
+  // أو هذه النسخة إذا لم يكن لديك الملف بعد:
   await Firebase.initializeApp();
+
   runApp(const AlgerianSportsApp());
 }
 
@@ -39,9 +51,11 @@ class NewsHomeScreen extends StatelessWidget {
         backgroundColor: Colors.green[800],
         centerTitle: true,
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        // الاستماع الفوري واللحظي للأخبار من قاعدة البيانات
-        stream: FirebaseFirestore.instance.collection('sports_news').snapshots(),
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+        stream: FirebaseFirestore.instance
+            .collection('sports_news')
+            .orderBy('time', descending: true)
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -53,7 +67,9 @@ class NewsHomeScreen extends StatelessWidget {
             );
           }
 
-          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          final docs = snapshot.data?.docs ?? [];
+
+          if (docs.isEmpty) {
             return const Center(
               child: Text(
                 'لا توجد أخبار حالياً، سيتم تحديث النتائج قريباً.',
@@ -62,15 +78,21 @@ class NewsHomeScreen extends StatelessWidget {
             );
           }
 
-          final newsDocs = snapshot.data!.docs;
-
           return ListView.builder(
             padding: const EdgeInsets.all(12.0),
-            itemCount: newsDocs.length,
+            itemCount: docs.length,
             itemBuilder: (context, index) {
-              var newsData = newsDocs[index].data() as Map<String, dynamic>;
-              String title = newsData['title'] ?? 'خبر رياضي جديد';
-              String time = newsData['time'] ?? 'الآن';
+              final data = docs[index].data();
+              final title = data['title'] ?? 'خبر رياضي جديد';
+
+              final timeValue = data['time'];
+              String time = 'الآن';
+
+              if (timeValue is Timestamp) {
+                time = DateFormat('dd/MM/yyyy • HH:mm').format(timeValue.toDate());
+              } else if (timeValue is String) {
+                time = timeValue;
+              }
 
               return Card(
                 elevation: 3,
